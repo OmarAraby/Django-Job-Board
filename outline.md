@@ -29,6 +29,17 @@ Blog :
     - recent posts
 
 
-Contact 
-home
-login
+Contact
+
+Home
+
+Login
+
+
+
+---------------------------------------------------------------------------------------------
+
+Relationship :
+    - One to Many --> (user - posts ) (auther - books)  ForeginKey
+    - Many to Many ----> (user - groups) 
+    - One to One ----> (user - profile)

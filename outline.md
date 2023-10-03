@@ -43,3 +43,11 @@ Relationship :
     - One to Many --> (user - posts ) (auther - books)  ForeginKey
     - Many to Many ----> (user - groups) 
     - One to One ----> (user - profile)
+
+
+
+---------------------------------------------------------------------------------------------
+
+static files : [all files that are related to frontend (images , css , js)]
+
+media files : [upload files (images , )]

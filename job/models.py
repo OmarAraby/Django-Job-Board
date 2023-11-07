@@ -1,7 +1,8 @@
 from re import T
 from tkinter import CASCADE
-from turtle import title
+
 from unicodedata import category
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify  
 
@@ -20,15 +21,20 @@ JOB_TYPE = (
     ('Part Time','Part Time'),
 )
 
-
-def image_upload(instance , filename):
-    imagename , extension =filename.split(".")
-    return "jobs/%s.%s"%(instance.id,extension)
+def image_upload(instance, filename):
+    parts = filename.split(".")
+    extension = ""
+    if len(parts) == 2:
+        imagename, extension = parts
+    else:
+        # Handle the case where there are too many or too few periods in the filename
+        print("Invalid filename format:", filename)
+    return "jobs/%s.%s" % (instance.id, extension)
 
 
 
 class Job(models.Model):
-
+    owner = models.ForeignKey(User ,related_name='job_owner', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     #location
     job_type = models.CharField(max_length=15 , choices=JOB_TYPE)

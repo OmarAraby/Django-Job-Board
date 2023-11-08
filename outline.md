@@ -25,7 +25,7 @@ Blog :
 
 
     - search
-    - cooment
+    - comment
     - recent posts
 
 
@@ -51,3 +51,25 @@ Relationship :
 static files : [all files that are related to frontend (images , css , js)]
 
 media files : [upload files (images , )]
+---------------------------------------------------------------------------------------------
+
+
+
+API :
+
+    - Function Based Views :
+        - simple
+        - customize
+        - if you have a complex logic and you need to implement it
+
+
+    - Class Based Views (Genecric Based Views) :
+        - fast development
+        - not prefered if you have a complex logic 
+
+
+    - ViewSets :
+     - API -- [model + url] [CRUD] ---> it make all operation that you need
+     - difficult to customize 
+
+

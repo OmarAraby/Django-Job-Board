@@ -1,19 +1,21 @@
 
 import imp
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render ,get_object_or_404
 from django.urls import reverse 
-from .models import Job
+from .models import Job,Category
 from django.core.paginator import Paginator
 from .form import ApplyForm ,JobForm
 from django.contrib.auth.decorators import login_required
 from .filters import JobFilter
 
+
 # Create your views here.
 
 
-def job_list(request):
+def job_list(request,category_name=None):
     job_list = Job.objects.all()
-
+    
+    
    ### filters
     myfilter = JobFilter(request.GET, queryset=job_list)
     job_list = myfilter.qs
@@ -31,8 +33,15 @@ def job_list(request):
     return render(request , 'job/job_list.html', context ) 
     
 
+
+
+
+
+
+
 def job_detail(request, slug):
     job_detail = Job.objects.get(slug=slug)
+   
 
     if request.method=='POST':
         form = ApplyForm(request.POST, request.FILES)
@@ -46,6 +55,10 @@ def job_detail(request, slug):
     
     context = {'job':job_detail , 'form':form}
     return render(request , 'job/job_detail.html', context )
+
+
+
+
 
 @login_required
 def add_job(request):

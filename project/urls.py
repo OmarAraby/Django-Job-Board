@@ -27,7 +27,8 @@ urlpatterns = [
     
     path('jobs/', include('job.urls', namespace='jobs') ),
     path('contact-us/', include('contact.urls', namespace='contact') ),
-     path('api-auth/', include('rest_framework.urls') ),
+    path('', include('home.urls', namespace='home') ),
+    path('api-auth/', include('rest_framework.urls') ),
 ]
 
 

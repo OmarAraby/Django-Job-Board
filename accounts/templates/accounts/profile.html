@@ -24,8 +24,19 @@
                 
                 <div class="col-lg-8 mx-auto">
                     <div class="job_sumary">
+                        
                         <div class="summery_header">
-                            <h3>Profile Summery</h3>
+                            <h3 style="align:center;">Profile Summery</h3>
+
+                            <div class="media post_item">
+                                {% if profile.image %}
+                                    <!-- Check if the author has a profile image -->
+                                    <img src="{{ profile.image.url }}" alt="{{ profile }}" style="width: 120px; height: 120px;  border-radius: 50%;  object-fit: cover;">
+                                {% else %}
+                                    <img src="{% static 'img/blog/author.png' %}" alt="{{ post.author.username }}" class="rounded-circle">
+                                {% endif %}
+                             
+                            </div>
                         </div>
                         <div class="job_content">
                             <ul>

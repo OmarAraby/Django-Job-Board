@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
+from django.urls import reverse 
 from .models import Blog
 from job.models import Category
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from .form import BlogForm
 
 # Create your views here.
 
@@ -39,3 +42,42 @@ def blog_list(request,category_name=None):
 def blog_detail(request):
     
     return render(request,'blog/blog_detail.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@login_required
+def add_blog(request):
+    
+    if request.method=='POST':
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.author = request.user
+            myform.save()
+
+            return redirect(reverse('blog:blog_list'))
+ 
+        
+    else:
+        form = BlogForm()
+    
+
+    context = {'form':form}
+
+    return render(request , 'blog/add_blog.html', context)

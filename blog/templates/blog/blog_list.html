@@ -22,6 +22,10 @@
 
 
     <!--================Blog Area =================-->
+    <div style="text-align:right; padding:30px; " class="d-none d-lg-block" >
+        <a  class="boxed-btn3" href="{% url "blog:add_blog" %}">Add a Post</a>
+    </div >
+
     <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
@@ -48,7 +52,9 @@
                         </article>
                         {% endfor %}
                        
-
+                        <div style="text-align:left; padding:30px; " class="d-none d-lg-block" >
+                            <a  style="color: white" class="boxed-btn3" href="{% url "blog:add_blog" %}">Add a Post</a>
+                        </div >
                        
                         {% if blogs.has_other_pages %}
                             <div class="row">

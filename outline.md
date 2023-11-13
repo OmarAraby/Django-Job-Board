@@ -23,6 +23,8 @@ Blog :
     - tags
     - author
 
+    ---> Enable To make An Edit On Post 
+
 
     - search
     - comment

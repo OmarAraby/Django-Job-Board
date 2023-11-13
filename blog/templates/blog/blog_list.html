@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
 {% load static %}
 
 
@@ -39,7 +40,7 @@
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
+                                <a class="d-inline-block" href="{% url 'blog:blog_detail' blog.title %}">
                                     <h2>{{blog.title}}</h2>
                                 </a>
                                 <p>{{blog.description}}</p>
@@ -53,7 +54,7 @@
                         {% endfor %}
                        
                         <div style="text-align:left; padding:30px; " class="d-none d-lg-block" >
-                            <a  style="color: white" class="boxed-btn3" href="{% url "blog:add_blog" %}">Add a Post</a>
+                            <a   class="boxed-btn3" href="{% url "blog:add_blog" %}"><span style="color: white">Add a Post</span></a>
                         </div >
                        
                         {% if blogs.has_other_pages %}
@@ -84,7 +85,7 @@
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                            {% comment %} <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
@@ -97,7 +98,12 @@
                                 </div>
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                     type="submit">Search</button>
-                            </form>
+                            </form> {% endcomment %}
+                            <form method="GET">
+                                {% bootstrap_form myfilter.form %}
+                                
+                                <input type='submit' value='Search' class='boxed-btn3 w-100 mt-4'>
+                             </form>
                         </aside>
 
                         <aside class="single_sidebar_widget post_category_widget">
@@ -129,7 +135,7 @@
                                     <a href="single-blog.html">
                                         <h3>{{post.title}}</h3>
                                     </a>
-                                    <p>{{post.published_at}}</p>
+                                    <p>{{post.published_at|timesince}}</p>
                                 </div>
                             </div>
                             {% endfor %}

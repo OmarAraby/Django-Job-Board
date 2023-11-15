@@ -7,4 +7,4 @@ class BlogFilter(django_filters.FilterSet):
     class Meta:
         model = Blog
         fields = '__all__'
-        exclude = ['author','published_at','image']
+        exclude = ['author','published_at','image','category']

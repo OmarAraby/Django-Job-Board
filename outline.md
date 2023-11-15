@@ -24,6 +24,11 @@ Blog :
     - author
 
     ---> Enable To make An Edit On Post 
+    ---> Category Filter
+    ---> Comment
+    ---> Reply On the comment
+    ---> Enable Editing On Comment
+    ---> Next & Previos on Blog Posts
 
 
     - search

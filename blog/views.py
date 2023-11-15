@@ -13,11 +13,12 @@ from .filters import BlogFilter
 
 
 def blog_list(request,category_name=None):
+    all_blog_list = Blog.objects.all()
     blog_list = Blog.objects.all().order_by('-published_at')
 
     recent_post = Blog.objects.all().order_by('-published_at')[:4]
 
-      ### filters
+    # Apply filters
     myfilter = BlogFilter(request.GET, queryset=blog_list)
     blog_list = myfilter.qs
 
@@ -25,6 +26,8 @@ def blog_list(request,category_name=None):
 
     categories = Category.objects.all()
 
+
+    # Apply category filter
     if category_name:
         category = Category.objects.get(name=category_name)
         blog_list = blog_list.filter(category=category)
@@ -34,7 +37,15 @@ def blog_list(request,category_name=None):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    context = {'blogs':page_obj ,'blog_list':blog_list, 'categories': categories, 'myfilter':myfilter,'selected_category': category_name,'recent_post':recent_post}
+    context = {
+        'blogs':page_obj ,
+        'blog_list':blog_list,
+        'categories': categories,
+        'myfilter':myfilter,
+        'selected_category': category_name,
+        'recent_post':recent_post,
+        'all_categories_count': all_blog_list.count(),  # Count of all blog posts without filtering
+        }
 
 
     return render(request,'blog/blog_list.html',context)
@@ -49,7 +60,7 @@ def blog_list(request,category_name=None):
 def blog_detail(request,title):
     blog_detail = Blog.objects.get(title=title)
     categories = Category.objects.all()
-    blog_list = Blog.objects.all().order_by
+    blog_list = Blog.objects.all()
     recent_post = Blog.objects.all().order_by('-published_at')[:4]
 
     context = {'blog':blog_detail,'categories':categories,'blog_list':blog_list,'recent_post':recent_post}

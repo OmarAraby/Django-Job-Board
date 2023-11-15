@@ -19,5 +19,21 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    text = models.TextField()
+    published_at = models.DateTimeField(auto_now=True)
+    edited_at = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.user.username} on {self.blog.title}'
+
+    class Meta:
+        ordering = ['-published_at']
 
 

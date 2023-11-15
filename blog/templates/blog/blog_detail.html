@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
 {% load static %}
 
 
@@ -33,7 +34,7 @@
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><a href="#"><i class="fa fa-user"></i> {{blog.author}}</a></li>
                         <li><a href="#"><i class="fa fa-tag"></i>Category : {{blog.category}}</a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                        <li><a href="#"><i class="fa fa-comments"></i> {{ comments.count }} Comments</a></li>
                      </ul>
                      
                      <div class="quote-wrapper">
@@ -56,168 +57,141 @@
                      <div class="row">
                         <div
                            class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                           {% if prev_post %}
+
                            <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="{% static "img/post/preview.png" %}" alt="">
+                              <a href="{% url 'blog:blog_detail' title=prev_post.title %}">
+                                 <img class="img-fluid" style="width: 100px;" src="{{ prev_post.image.url }}" alt="Previous Post Image">
                               </a>
                            </div>
+                          
                            <div class="arrow">
-                              <a href="#">
+                              <a href="{% url 'blog:blog_detail' title=prev_post.title %}">
                                  <span class="lnr text-white ti-arrow-left"></span>
                               </a>
                            </div>
                            <div class="detials">
                               <p>Prev Post</p>
-                              <a href="#">
-                                 <h4>Space The Final Frontier</h4>
+                              <a href="{% url 'blog:blog_detail' title=prev_post.title %}">
+                                 <h4>{{prev_post.title}}</h4>
                               </a>
                            </div>
+                           {% endif %}
                         </div>
-                        <div
-                           class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                        
+                        <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                           {% if next_post %}
                            <div class="detials">
                               <p>Next Post</p>
-                              <a href="#">
-                                 <h4>Telescopes 101</h4>
+                              <a href="{% url 'blog:blog_detail' title=next_post.title %}">
+                                 <h4>{{next_post.title}}</h4>
                               </a>
                            </div>
                            <div class="arrow">
-                              <a href="#">
+                              <a href="{% url 'blog:blog_detail' title=next_post.title %}">
                                  <span class="lnr text-white ti-arrow-right"></span>
                               </a>
                            </div>
                            <div class="thumb">
-                              <a href="#">
-                                 <img class="img-fluid" src="{% static "img/post/next.png" %}" alt="">
+                              <a href="{% url 'blog:blog_detail' title=next_post.title %}">
+                                 <img class="img-fluid" style="width: 100px; " src="{{ next_post.image.url }}" alt="Next Post Image">
                               </a>
                            </div>
+                           {% endif %}
                         </div>
                      </div>
                   </div>
                </div>
-               <div class="blog-author">
-                  <div class="media align-items-center">
-                     <img src="{% static "img/blog/author.png" %}" alt="">
-                     <div class="media-body">
-                        <a href="#">
-                           <h4>Harvard milan</h4>
-                        </a>
-                        <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                           our dominion twon Second divided from</p>
-                     </div>
-                  </div>
-               </div>
+            
                <div class="comments-area">
-                  <h4>05 Comments</h4>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="{% static "img/comment/comment_1.png" %}" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
+                  <h4>{{ comments.count }} Comments</h4>
+                  {% for comment in comments %}
+                      <div class="comment-list">
+                          <div class="single-comment justify-content-between d-flex">
+                              <div class="user justify-content-between d-flex">
+                                  <div class="thumb">
+                                      <img src="{{ comment.user.profile.image.url }}" alt="{{ comment.user.username }}" style="width: 70px; height: 80px;  border-radius: 50%;  object-fit: cover;">
+                                  </div>
+                                  <div class="desc">
+                                      
+                                      <div class="d-flex justify-content-between">
+                                          <div class="d-flex align-items-center">
+                                              <h5>
+                                                  <a href="#">{{ comment.user.username }}</a>
+                                              </h5>
+                                              <p class="date">{{ comment.published_at }}   </p>
+                                              
+
+                                     
+                                          </div>
+                                          {% if comment.edited_at %}
+                                             <span style="color: gray;">(edited at {{ comment.edited_at }})</span>
+                                          {% endif %}
+
+                                          
+                                      </div>
+                                      <p class="comment">{{ comment.text }}</p>
+                                     
+                                  </div>
+                              
                               </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="{% static "img/comment/comment_2.png" %}" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="{% static "img/comment/comment_3.png" %}" alt="">
-                           </div>
-                           <div class="desc">
-                              <p class="comment">
-                                 Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                 Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                              </p>
-                              <div class="d-flex justify-content-between">
-                                 <div class="d-flex align-items-center">
-                                    <h5>
-                                       <a href="#">Emilly Blunt</a>
-                                    </h5>
-                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                 </div>
-                                 <div class="reply-btn">
-                                    <a href="#" class="btn-reply text-uppercase">reply</a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                              {% if comment.user == user %}
+                                    
+                              <!-- Display edit link/button for the comment owner -->
+                                <a style="text-align: center;" href="?edit_comment_id={{ comment.id }}#edit-comment-form" class="edit-comment">Edit</a>
+                             {% endif %}
+                          </div>
+                      </div>
+                  {% endfor %}
+              </div>
+              <!-- Edit comment form -->
+              <form id="edit-comment-form" class="form-contact comment_form" method="post" action="{% url 'blog:blog_detail' title=blog.title %}" style="display: none;">
+               {% csrf_token %}
+               <input type="hidden" name="comment_id" id="comment-id" value="{{ form.instance.id }}">
+               <div class="row">
+                   <div class="col-12">
+                       <div class="form-group">
+                           <textarea class="form-control w-100" name="text" id="text" cols="30" rows="9" placeholder="Write/Edit Comment" required>{{ form.text.value }}</textarea>
+                       </div>
+                   </div>
                </div>
-               <div class="comment-form">
-                  <h4>Leave a Reply</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
-                     <div class="row">
-                        <div class="col-12">
+               <div class="form-group">
+                   <button type="submit" class="button button-contactForm btn_1 boxed-btn">Save Changes</button>
+               </div>
+           </form>
+            <script>
+               document.addEventListener('DOMContentLoaded', function () {
+                  // Check if the edit_comment_id is present in the URL
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const editCommentId = urlParams.get('edit_comment_id');
+                  
+                  if (editCommentId) {
+                     // If edit_comment_id is present, show the edit comment form
+                     document.getElementById('edit-comment-form').style.display = 'block';
+                     
+                     // Set the comment_id in the form
+                     document.getElementById('comment-id').value = editCommentId;
+                  }
+               });
+            </script>
+              
+              <div class="comment-form">
+               <h4>Leave a Reply</h4>
+               <form class="form-contact comment_form" method="post" >
+                   {% csrf_token %}
+                   <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                   <div class="row">
+                       <div class="col-12">
                            <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Comment"></textarea>
+                               <textarea class="form-control w-100" name="text" id="text" cols="30" rows="9"
+                                   placeholder="Write Comment" required></textarea>
                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                           </div>
-                        </div>
-                        <div class="col-sm-6">
-                           <div class="form-group">
-                              <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                           </div>
-                        </div>
-                        <div class="col-12">
-                           <div class="form-group">
-                              <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-                     </div>
-                  </form>
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                   </div>
+               </form>
                </div>
             </div>
             <div class="col-lg-4">
@@ -240,17 +214,17 @@
                   <aside class="single_sidebar_widget post_category_widget">
                      <h4 class="widget_title">Category</h4>
                      <ul class="list cat-list">
-                         <li><a href="#">All Categories ({{ blog_list.count }})</a></li>
+                         <li><a href="{% url 'blog:blog_list' %}" {% if not selected_category %}class="active"{% endif %}>All Categories ({{ all_categories_count }})</a></li>
                          {% for category in categories %}
                              <li>
-                                 <a href="#" {% if category.name == selected_category %}class="active"{% endif %}>
+                                 <a href="{% url 'blog:blog_list_category' category_name=category.name %}" {% if category.name == selected_category %}class="active"{% endif %}>
                                      {{ category.name }} ({{ category.blog_set.count }})
                                  </a>
                              </li>
                          {% endfor %}
                          
                      </ul>
-                  </aside>
+                 </aside>
 
                      <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Recent Post</h3>

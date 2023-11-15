@@ -46,8 +46,8 @@
                                 <p>{{blog.description}}</p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="fa fa-user"></i>Author : {{blog.author}}</a></li>
-                                    <li><a href="#"><i class="fa fa-tag"></i>Category : {{blog.category}}</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li><a href="{% url 'blog:blog_list_category' category_name=blog.category.name %}" {% if blog.category.name == selected_category %}class="active"{% endif %}><i class="fa fa-tag"></i>Category : {{blog.category}}</a></li>
+                                    <li><a href="{% url 'blog:blog_detail' blog.title %}"><i class="fa fa-comments"></i> {{ blog.comment_count }} Comments</a></li>
                                 </ul>
                             </div>
                         </article>

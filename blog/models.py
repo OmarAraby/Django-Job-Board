@@ -29,7 +29,7 @@ class Comment(models.Model):
     text = models.TextField()
     published_at = models.DateTimeField(auto_now=True)
     edited = models.BooleanField(default=False)
-    deleted = models.BooleanField(default=False)
+  
 
     def __str__(self):
         return f'{self.user.username} on {self.blog.title}'

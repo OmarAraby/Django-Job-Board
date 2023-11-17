@@ -83,24 +83,16 @@ def blog_detail(request,title):
         comment_id = request.POST.get('comment_id')
         
         if comment_id:  # If comment_id is present, it's an edit or delete
-            action = request.POST.get('action')  # Check for the action parameter
-
-            if action == 'delete':
-                # Soft-delete the comment by setting the 'deleted' field to True
-                comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
-                comment.deleted = True
-                comment.save()
-
-            else:  # If no action or the action is 'edit', it's an edit
-                comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
-                form = CommentForm(request.POST, instance=comment)
-                
-                if form.is_valid():
-                    myform = form.save(commit=False)
-                    myform.blog = blog_detail
-                    myform.user = request.user
-                    myform.edited = True
-                    myform.save()
+         
+            comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
+            form = CommentForm(request.POST, instance=comment)
+            
+            if form.is_valid():
+                myform = form.save(commit=False)
+                myform.blog = blog_detail
+                myform.user = request.user
+                myform.edited = True
+                myform.save()
 
         else:  # If no comment_id, it's a new comment
             form = CommentForm(request.POST)
@@ -144,36 +136,28 @@ def blog_detail(request,title):
 
 
 
-# @login_required
-# def edit_comment(request, comment_id):
-#     comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
     
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, instance=comment)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('blog:blog_detail', title=comment.blog.title)
-#     else:
-#         form = CommentForm(instance=comment)
-
-#     return render(request, 'blog/edit_comment.html', {'form': form, 'comment': comment})
-
-
+    # Check if the comment has a related blog before trying to access its id
+    if comment.blog:
+        blog = comment.blog.title
+        comment.delete()
+        return redirect('blog:blog_detail', title=blog)
+    else:
+        # If the comment doesn't have a related blog, handle it accordingly
+        
+        return redirect('blog:blog_detail' , title=comment.blog.title) if comment.blog else redirect('blog:blog_list')
 
 
 
 
 
 
-# @login_required
-# def delete_comment(request, comment_id):
-#     comment = get_object_or_404(Comment, id=comment_id, user=request.user)
-    
-#     if request.method == 'POST':
-#         comment.delete()
-#         return redirect('blog:blog_detail', title=comment.blog.title)
 
-#     return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+
 
 
 

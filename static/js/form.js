@@ -7,7 +7,7 @@ window.addEventListener('pageshow', function (event) {
 
 function preventFormResubmission(event) {
     // Prevent the default form submission behavior
-    event.preventDefault();
+    ;event.preventDefault()
 
     // Disable the submit button
     var submitButton = document.getElementById('submitBtn');
@@ -57,21 +57,4 @@ function preventFormResubmission(event) {
     xhr.send(formData);
 }
 
-function getProcessingMessage(language) {
-    // Check the language and return the appropriate processing message
-    if (language === 'ar') {
-        return 'جاري الإرسال...';
-    } else {
-        return 'Submitting...';
-    }
-}
-
-function getSuccessMessage(language) {
-    // Check the language and return the appropriate success message
-    if (language === 'ar') {
-        return 'تم إرسال النموذج بنجاح!';
-    } else {
-        return 'Form submitted successfully!';
-    }
-}
 

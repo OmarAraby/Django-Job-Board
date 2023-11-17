@@ -76,20 +76,41 @@ def blog_detail(request,title):
     prev_post = Blog.objects.filter(published_at__lt=blog_detail.published_at).order_by('-published_at').first()
 
 
+
+    ##### Comment Section 
+
     if request.method == 'POST':
         comment_id = request.POST.get('comment_id')
         
-        if comment_id:  # If comment_id is present, it's an edit
-            comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
-            form = CommentForm(request.POST, instance=comment)
+        if comment_id:  # If comment_id is present, it's an edit or delete
+            action = request.POST.get('action')  # Check for the action parameter
+
+            if action == 'delete':
+                # Soft-delete the comment by setting the 'deleted' field to True
+                comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
+                comment.deleted = True
+                comment.save()
+
+            else:  # If no action or the action is 'edit', it's an edit
+                comment = get_object_or_404(Comment, id=comment_id, user=request.user, blog=blog_detail)
+                form = CommentForm(request.POST, instance=comment)
+                
+                if form.is_valid():
+                    myform = form.save(commit=False)
+                    myform.blog = blog_detail
+                    myform.user = request.user
+                    myform.edited = True
+                    myform.save()
+
         else:  # If no comment_id, it's a new comment
             form = CommentForm(request.POST)
 
-        if form.is_valid():
-            myform = form.save(commit=False)
-            myform.blog = blog_detail
-            myform.user = request.user
-            myform.save()
+            if form.is_valid():
+                myform = form.save(commit=False)
+                myform.blog = blog_detail
+                myform.user = request.user
+                myform.save()
+
 
             return HttpResponseRedirect(reverse('blog:blog_detail', args=[title]))
 

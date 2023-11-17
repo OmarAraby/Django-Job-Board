@@ -25,10 +25,11 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments')
+    blog = models.ForeignKey(Blog,related_name='comments', on_delete=models.CASCADE)
     text = models.TextField()
     published_at = models.DateTimeField(auto_now=True)
-    edited_at = models.DateTimeField(blank=True, null=True)
+    edited = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username} on {self.blog.title}'

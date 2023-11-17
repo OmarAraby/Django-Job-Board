@@ -40,11 +40,38 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>Name: <span>{{profile}}</span></li>
-                                <li>Email: <span>{{profile.user.email}} </span></li>
-                                <li>Phone: <span>{{profile.phone_number}}</span></li>
-                                <li>Address: <span>{{profile.city}}</span></li>
+                                <li>Name : <span>{{profile}}</span></li>
+                                <li>Email : <span>{{profile.user.email}} </span></li>
+                                <li>Phone : <span>{{profile.phone_number}}</span></li>
+                                <li>Address : <span>{{profile.city}}</span></li>
+                                <li>My Blogs : 
+                                    {% if user_blogs %}
+                                        <ul>
+                                            {% for blog in user_blogs %}
+                                                <li style="display: flex; justify-content: space-between;">
+                                                    <a href="{% url 'blog:blog_detail' blog.title blog.id %}">
+                                                        {{ blog.title }}
+                                                    </a>
+                                                    <button  type="button" class="btn btn-outline-danger ml-auto" onclick="confirmDelete({{ blog.id }})">Delete</button>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <p>You have no blogs yet.</p>
+                                    {% endif %}
+                                </li>
+                               
+
                             </ul>
+
+
+                            <script>
+                                function confirmDelete(blogId) {
+                                    if (confirm("Are you sure you want to delete this blog?")) {
+                                        window.location.href = '{% url "accounts:delete_blog" 0 %}'.replace('0', blogId);
+                                    }
+                                }
+                            </script>
                             
                         </div>
                         <div class="p-5">

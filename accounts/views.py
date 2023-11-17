@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render ,get_object_or_404
 from django.urls import reverse 
 from .forms import SignupForm , UserForm, ProfileForm
 from django.contrib.auth import authenticate , login
 from .models import Profile
+from blog.models import Blog
 # Create your views here.
 
 
@@ -33,7 +34,8 @@ def signup(request):
 
 def profile(request):
     profile = Profile.objects.get(user=request.user)
-    return render(request, 'accounts/profile.html',{'profile':profile})
+    user_blogs = Blog.objects.filter(author=request.user)
+    return render(request, 'accounts/profile.html',{'profile':profile,'user_blogs':user_blogs})
 
 
 
@@ -63,3 +65,17 @@ def profile_edit(request):
     context = {'userform':userform,'profileform':profileform}
 
     return render(request,'accounts/profile_edit.html',context)
+
+
+
+
+
+
+
+
+
+
+def delete_blog(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id, author=request.user)
+    blog.delete()
+    return redirect(reverse('accounts:profile'))

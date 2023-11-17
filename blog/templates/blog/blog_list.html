@@ -40,14 +40,14 @@
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="{% url 'blog:blog_detail' blog.title %}">
+                                <a class="d-inline-block" href="{% url 'blog:blog_detail' blog.title blog.id %}">
                                     <h2>{{blog.title}}</h2>
                                 </a>
                                 <p>{{blog.description}}</p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="fa fa-user"></i>Author : {{blog.author}}</a></li>
                                     <li><a href="{% url 'blog:blog_list_category' category_name=blog.category.name %}" {% if blog.category.name == selected_category %}class="active"{% endif %}><i class="fa fa-tag"></i>Category : {{blog.category}}</a></li>
-                                    <li><a href="{% url 'blog:blog_detail' blog.title %}#comment-section"><i class="fa fa-comments"></i> {{ blog.comment_count }} Comments</a></li>
+                                    <li><a href="{% url 'blog:blog_detail' blog.title blog.id %}#comment-section"><i class="fa fa-comments"></i> {{ blog.comment_count }} Comments</a></li>
                                 </ul>
                             </div>
                         </article>

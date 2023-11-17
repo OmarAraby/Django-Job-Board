@@ -64,8 +64,8 @@ def blog_list(request,category_name=None):
 
 
 @login_required
-def blog_detail(request,title):
-    blog_detail = Blog.objects.get(title=title)
+def blog_detail(request,title,id):
+    blog_detail = Blog.objects.get(title=title,id=id)
     categories = Category.objects.all()
     blog_list = Blog.objects.all()
     recent_post = Blog.objects.all().order_by('-published_at')[:4]

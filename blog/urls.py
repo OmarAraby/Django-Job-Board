@@ -12,7 +12,7 @@ urlpatterns = [
     
     path('category/<str:category_name>/', views.blog_list, name='blog_list_category'),  # New URL pattern for category filtering
     path('delete-comment/<int:pk>/', views.delete_comment, name='delete_comment'),
-    path('<str:title>' ,  views.blog_detail , name='blog_detail'),
+    path('<str:title>/<int:id>/' ,  views.blog_detail , name='blog_detail'),
     
 
 

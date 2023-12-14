@@ -57,6 +57,10 @@ python manage.py runserver
 
 ![image](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/74df9fae-9646-4413-bb90-e004b17bf359)
 
+![image](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/615ab477-8f6e-4d6d-bd56-4c2ee44f585c) ![image](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/9cb9e114-f102-412d-9d48-8821530b40a1)
+
+
+
 ![image](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/07386b8c-f800-4c68-b721-8127651a6b9d)
 ![image](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/1c799248-541f-4e58-a0d3-c0a8b229e67f)
 

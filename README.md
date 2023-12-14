@@ -1,4 +1,4 @@
-"# Django-Job-Board" 
+<h1 align="center">"# Django-Job-Board"<h1>
 
 
 <h2 align="left"> Installation:</h2>

@@ -42,3 +42,12 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+
+<h2 align="left"> Installation:</h2>
+
+
+![Screenshot (4)](https://github.com/OmarAraby/Django-Job-Board/assets/55214550/a7328d82-e1b9-4c68-99f6-83dcfa6837ac)
+
+
+
+

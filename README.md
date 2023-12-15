@@ -1,6 +1,6 @@
 <h1 align="left">"# Django-Job-Board"<h1>
 
-Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs
+* Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs
 
 <h2 align="left"> Features </h2>
 

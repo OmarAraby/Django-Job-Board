@@ -1,7 +1,7 @@
 <h1 align="left">Django-Job-Board<h1>
 
 <h2 align="left"> Quick Note  </h2>
-<p>Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs BASED ON tis Tutorial <a href='https://youtube.com/playlist?list=PLtGOJcWqvbqfv9yQelR4HETqU35alUoW6&si=sTJkQLB-SwwCMbsE'> Link</a> the Tutorial Just cover Job Section from Browsing , Searching and Applying  and didn't include blog section so i handle this section on my repo 
+<p>Django job Boad is a web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs BASED ON tis Tutorial <a href='https://youtube.com/playlist?list=PLtGOJcWqvbqfv9yQelR4HETqU35alUoW6&si=sTJkQLB-SwwCMbsE'> Link</a> the Tutorial Just cover Job Section from Browsing , Searching and Applying  and didn't include blog section so i handle this section on my repo 
 </p>
 
 

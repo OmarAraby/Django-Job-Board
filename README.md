@@ -1,5 +1,11 @@
 <h1 align="center">"# Django-Job-Board"<h1>
 
+<h2 align="left"> Description :</h2>
+Build a Job Board with Django and (html - css - js) Templates
+You can browse for the job that is suitable for you in all fields, and
+you can apply for it through the list of jobs available on the site
+after sending your data and responding to you as soon as possible
+
 
 <h2 align="left"> Installation:</h2>
 <h4>Step 1: clone the repo <br></h4>
@@ -43,7 +49,7 @@ python manage.py runserver
 ```
 
 
-<h2 align="left"> ScreenShot</h2>
+<h2 align="left"> ScreenShots</h2>
 
 
 

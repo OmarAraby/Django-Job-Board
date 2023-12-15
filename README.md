@@ -1,5 +1,5 @@
 <h1 align="left">Django-Job-Board<h1>
-<p|>Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs BASED ON tis Tutorial <a href='https://youtube.com/playlist?list=PLtGOJcWqvbqfv9yQelR4HETqU35alUoW6&si=sTJkQLB-SwwCMbsE'> Link</a>
+<p>Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs BASED ON tis Tutorial <a href='https://youtube.com/playlist?list=PLtGOJcWqvbqfv9yQelR4HETqU35alUoW6&si=sTJkQLB-SwwCMbsE'> Link</a>
 </p>
 <h2 align="left"> Features </h2>
 

@@ -1,10 +1,17 @@
-<h1 align="center">"# Django-Job-Board"<h1>
+<h1 align="left">"# Django-Job-Board"<h1>
+Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs
 
-<h2 align="left"> Description :</h2>
-Build a Job Board with Django and (html - css - js) Templates
-You can browse for the job that is suitable for you in all fields, and
-you can apply for it through the list of jobs available on the site
-after sending your data and responding to you as soon as possible
+<h2 align="left"> Features </h2>
+
+* You can browse for the job that is suitable for you in all fields, and you can apply for it through the list of jobs available on the site after sending your data and responding to you as soon as possible
+* User dashboard allows users to manage their job search and application process.
+
+<h2 align="left"> Getting Started </h2>
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+<h4>Prerequisites <br></h4>
+You will need to have the following software installed on your system:
+* Python (3.7 or later)
 
 
 <h2 align="left"> Installation:</h2>
@@ -36,7 +43,7 @@ python manage.py migrate --run-syncdb
 ```
 
 
-<h4> Step 6: create an admin account</h4>
+<h4> Step 6: create a superuser to get an access the admin panal</h4>
 
 ```python
 python manage.py createsuperuser

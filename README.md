@@ -1,4 +1,5 @@
 <h1 align="left">"# Django-Job-Board"<h1>
+
 Django job Boad is an web application Built Using Django Framework and and (html - css - js) Templates that allows users to post and search for jobs
 
 <h2 align="left"> Features </h2>
@@ -11,6 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 <h4>Prerequisites <br></h4>
 You will need to have the following software installed on your system:
+
 * Python (3.7 or later)
 
 

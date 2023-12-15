@@ -4,7 +4,8 @@ Django job Boad is an web application Built Using Django Framework and and (html
 
 <h2 align="left"> Features </h2>
 
-* You can browse for the job that is suitable for you in all fields, and you can apply for it through the list of jobs available on the site after sending your data and responding to you as soon as possible
+* You can browse for the job that is suitable for you in all fields, and you can apply for it through the list of jobs available on the site after sending your data and responding to you 
+   as soon as possible
 * User dashboard allows users to manage their job search and application process.
 
 <h2 align="left"> Getting Started </h2>
